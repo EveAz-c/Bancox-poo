@@ -26,7 +26,9 @@ public abstract class Transaccion {
     public abstract void ejecutar();
 
     public void cancelar() {
-        // TODO: implementar
+        if (estado==EstadoTransaccion.PENDIENTE) {
+            estado=EstadoTransaccion.CANCELADA;
+        }
     }
 
     public double getMonto() {

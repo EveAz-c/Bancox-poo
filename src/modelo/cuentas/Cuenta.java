@@ -21,30 +21,39 @@ public abstract class Cuenta {
         this.saldo = saldoInicial;
     }
 
-    public void depositar(double monto) {
-        // TODO: implementar
+    public boolean depositar(double monto) {
+        if (estado==EstadoCuenta.ACTIVA || monto>0){
+            saldo+=monto;
+            return true;
+        }
+        return false;
     }
 
     public boolean retirar(double monto) {
-        // TODO: implementar
-        return false;
-    }
-
-    public boolean retirar(double monto, String concepto) {
-        // TODO: implementar
-        return false;
+        if(!puedeRetirar(monto)){
+            return false;
+        }
+        saldo-=monto;
+        return true;
     }
 
     public double consultarSaldo() {
-        // TODO: implementar
+        if(estado==EstadoCuenta.ACTIVA){
+            return saldo;
+        }
         return 0;
     }
 
     public void cambiarEstado(EstadoCuenta nuevo) {
-        // TODO: implementar
+        estado = nuevo;
+    }
+
+    public boolean puedeRecibir(double monto) {
+        return estado == EstadoCuenta.ACTIVA && monto > 0;
     }
 
     public abstract double calcularInteres();
+
 
     protected abstract boolean puedeRetirar(double monto);
 
