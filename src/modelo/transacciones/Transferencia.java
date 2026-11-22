@@ -7,7 +7,7 @@ public class Transferencia extends Transaccion implements Comisionable {
 
     public Transferencia(double monto, Cuenta cuentaOrigen, Cuenta cuentaDestino, String referencia) {
         super(monto, cuentaOrigen);
-        this.cuenta_destino = cuentaDestino;
+        this.cuentaDestino = cuentaDestino;
         this.referencia = referencia;
     }
 

@@ -3,15 +3,15 @@ package modelo.cuentas;
 import modelo.personas.Cliente;
 
 public class CuentaCorriente extends Cuenta {
-    private double limite_sobregiro;
-    private double comision_manejo;
+    private double limiteSobregiro;
+    private double comisionManejo;
 
     public CuentaCorriente() {
     }
 
     public CuentaCorriente(String numeroCuenta, Cliente titular, double saldoInicial, double limiteSobregiro) {
         super(numeroCuenta, titular, saldoInicial);
-        this.limite_sobregiro = limiteSobregiro;
+        this.limiteSobregiro = limiteSobregiro;
     }
 
     @Override

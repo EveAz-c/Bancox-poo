@@ -5,14 +5,14 @@ import modelo.banco.Sucursal;
 import modelo.cuentas.Cuenta;
 
 public abstract class Transaccion {
-    protected String id_transaccion;
+    protected String idTransaccion;
     protected double monto;
-    protected LocalDateTime fecha_hora;
+    protected LocalDateTime fechaHora;
     protected EstadoTransaccion estado;
     private static int contador = 0;
-    protected Cuenta cuenta_origen;
-    protected Cuenta cuenta_destino;
-    protected Sucursal realizada_en;
+    protected Cuenta cuentaOrigen;
+    protected Cuenta cuentaDestino;
+    protected Sucursal realizadaEn;
     protected Comprobante comprobante;
 
     public Transaccion() {
@@ -20,7 +20,7 @@ public abstract class Transaccion {
 
     public Transaccion(double monto, Cuenta cuentaOrigen) {
         this.monto = monto;
-        this.cuenta_origen = cuentaOrigen;
+        this.cuentaOrigen = cuentaOrigen;
     }
 
     public abstract void ejecutar();
@@ -35,7 +35,7 @@ public abstract class Transaccion {
 
     @Override
     public String toString() {
-        return "Transaccion{" + "id_transaccion=" + id_transaccion + ", monto=" + monto + ", fecha_hora=" + fecha_hora + ", estado=" + estado + "}";
+        return "Transaccion{" + "idTransaccion=" + idTransaccion + ", monto=" + monto + ", fechaHora=" + fechaHora + ", estado=" + estado + "}";
     }
 
 }

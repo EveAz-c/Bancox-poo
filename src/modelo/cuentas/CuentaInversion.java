@@ -4,17 +4,17 @@ import java.time.LocalDate;
 import modelo.personas.Cliente;
 
 public class CuentaInversion extends Cuenta {
-    private int plazo_dias;
-    private double tasa_anual;
-    private LocalDate fecha_vencimiento;
+    private int plazoDias;
+    private double tasaAnual;
+    private LocalDate fechaVencimiento;
 
     public CuentaInversion() {
     }
 
     public CuentaInversion(String numeroCuenta, Cliente titular, double saldoInicial, int plazoDias, double tasaAnual) {
         super(numeroCuenta, titular, saldoInicial);
-        this.plazo_dias = plazoDias;
-        this.tasa_anual = tasaAnual;
+        this.plazoDias = plazoDias;
+        this.tasaAnual = tasaAnual;
     }
 
     @Override

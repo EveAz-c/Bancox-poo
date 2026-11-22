@@ -6,11 +6,11 @@ import java.util.List;
 import modelo.transacciones.Transaccion;
 
 public class HistorialMovimientos {
-    private String numero_cuenta;
+    private String numeroCuenta;
     private List<Transaccion> movimientos = new ArrayList<>();
 
     public HistorialMovimientos(String numeroCuenta) {
-        this.numero_cuenta = numeroCuenta;
+        this.numeroCuenta = numeroCuenta;
     }
 
     public void registrar(Transaccion t) {

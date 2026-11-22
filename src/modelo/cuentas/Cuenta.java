@@ -4,11 +4,11 @@ import java.time.LocalDate;
 import modelo.personas.Cliente;
 
 public abstract class Cuenta {
-    protected String numero_cuenta;
+    protected String numeroCuenta;
     protected double saldo;
-    protected LocalDate fecha_apertura;
+    protected LocalDate fechaApertura;
     protected EstadoCuenta estado;
-    private static int total_cuentas = 0;
+    private static int totalCuentas = 0;
     protected Cliente titular;
     protected HistorialMovimientos historial;
 
@@ -16,7 +16,7 @@ public abstract class Cuenta {
     }
 
     public Cuenta(String numeroCuenta, Cliente titular, double saldoInicial) {
-        this.numero_cuenta = numeroCuenta;
+        this.numeroCuenta = numeroCuenta;
         this.titular = titular;
         this.saldo = saldoInicial;
     }
@@ -50,7 +50,7 @@ public abstract class Cuenta {
 
     @Override
     public String toString() {
-        return "Cuenta{" + "numero_cuenta=" + numero_cuenta + ", saldo=" + saldo + ", fecha_apertura=" + fecha_apertura + ", estado=" + estado + "}";
+        return "Cuenta{" + "numeroCuenta=" + numeroCuenta + ", saldo=" + saldo + ", fechaApertura=" + fechaApertura + ", estado=" + estado + "}";
     }
 
 }

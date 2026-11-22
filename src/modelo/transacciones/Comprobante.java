@@ -4,9 +4,9 @@ import java.time.LocalDateTime;
 
 public class Comprobante {
     private int folio;
-    private LocalDateTime fecha_emision;
-    private double monto_total;
-    private static int total_emitidos = 0;
+    private LocalDateTime fechaEmision;
+    private double montoTotal;
+    private static int totalEmitidos = 0;
 
     public Comprobante(Transaccion transaccion) {
     }
