@@ -2,31 +2,38 @@ package modelo.transacciones;
 
 import modelo.cuentas.Cuenta;
 
+import java.time.LocalDateTime;
+
 public class Deposito extends Transaccion implements Comisionable {
-    private String medio;
+    private Canal canal;
 
     public Deposito() {
     }
 
-    public Deposito(double monto, Cuenta cuentaOrigen, String medio) {
+    public Deposito(double monto, Cuenta cuentaOrigen, Canal canal) {
         super(monto, cuentaOrigen);
-        this.medio = medio;
+        this.canal = canal;
     }
 
     @Override
     public void ejecutar() {
-        // TODO: implementar
+        double total = monto-calcularComision();
+        if(cuentaOrigen.depositar(total)) {
+            estado = EstadoTransaccion.APLICADA;
+        } else {
+            estado = EstadoTransaccion.RECHAZADA;
+        }
+        fechaHora = LocalDateTime.now();
     }
 
     @Override
     public double calcularComision() {
-        // TODO: implementar
-        return 0;
+        return monto*canal.getPorcentaje();
     }
 
     @Override
     public String toString() {
-        return "Deposito{" + "medio=" + medio + "}";
+        return "Deposito{" + "medio=" + canal + "}";
     }
 
 }

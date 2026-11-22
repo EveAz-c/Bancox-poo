@@ -1,24 +1,30 @@
 package modelo.transacciones;
 
+import java.time.LocalDateTime;
 import modelo.cuentas.Cuenta;
 
 public class Retiro extends Transaccion implements Comisionable {
-    private String canal;
+    private Canal canal;
 
-    public Retiro(double monto, Cuenta cuentaOrigen, String canal) {
+    public Retiro(double monto, Cuenta cuentaOrigen, Canal canal) {
         super(monto, cuentaOrigen);
         this.canal = canal;
     }
 
     @Override
     public void ejecutar() {
-        // TODO: implementar
+        double total = monto-calcularComision();
+        if (cuentaOrigen.retirar(total)) {
+            estado = EstadoTransaccion.APLICADA;
+        } else {
+            estado = EstadoTransaccion.RECHAZADA;
+        }
+        fechaHora = LocalDateTime.now();
     }
 
     @Override
     public double calcularComision() {
-        // TODO: implementar
-        return 0;
+        return monto*canal.getPorcentaje();
     }
 
     @Override

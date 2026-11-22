@@ -2,29 +2,38 @@ package modelo.transacciones;
 
 import modelo.cuentas.Cuenta;
 
-public class Transferencia extends Transaccion implements Comisionable {
-    private String referencia;
+import java.time.LocalDateTime;
 
-    public Transferencia(double monto, Cuenta cuentaOrigen, Cuenta cuentaDestino, String referencia) {
+public class Transferencia extends Transaccion implements Comisionable {
+    private Canal canal;
+
+    public Transferencia(double monto, Cuenta cuentaOrigen, Cuenta cuentaDestino, Canal canal) {
         super(monto, cuentaOrigen);
         this.cuentaDestino = cuentaDestino;
-        this.referencia = referencia;
+        this.canal = canal;
     }
 
     @Override
     public void ejecutar() {
-        // TODO: implementar
+        if (cuentaDestino == null || !cuentaDestino.puedeRecibir(monto)) {
+            estado = EstadoTransaccion.RECHAZADA;
+        } else if (cuentaOrigen.retirar(monto + calcularComision())) {
+            cuentaDestino.depositar(monto);
+            estado = EstadoTransaccion.APLICADA;
+        } else {
+            estado = EstadoTransaccion.RECHAZADA;
+        }
+        fechaHora= LocalDateTime.now();
     }
 
     @Override
     public double calcularComision() {
-        // TODO: implementar
-        return 0;
+        return monto*canal.getPorcentaje();
     }
 
     @Override
     public String toString() {
-        return "Transferencia{" + "referencia=" + referencia + "}";
+        return "Transferencia{" + "canal=" + canal + "}";
     }
 
 }

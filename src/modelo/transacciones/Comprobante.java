@@ -5,15 +5,22 @@ import java.time.LocalDateTime;
 public class Comprobante {
     private int folio;
     private LocalDateTime fechaEmision;
-    private double montoTotal;
+    private Transaccion transaccion;
     private static int totalEmitidos = 0;
+    private double montoTotal = 0;
 
     public Comprobante(Transaccion transaccion) {
+        this.folio= ++totalEmitidos;
+        this.fechaEmision=LocalDateTime.now();
+        this.transaccion=transaccion;
+        this.montoTotal=transaccion.getMonto();
     }
 
     public String generarTexto() {
-        // TODO: implementar
-        return null;
+        return "COMPROBANTE #" + folio + "\n"
+                + "Fecha: " + fechaEmision + "\n"
+                +  transaccion+ "\n"
+                + "Total: $" + montoTotal;
     }
 
     public int getFolio() {
