@@ -17,8 +17,7 @@ public abstract class Persona {
     }
 
     public String getNombreCompleto() {
-        // TODO: implementar
-        return null;
+        return nombre + " " + apellido + " ";
     }
 
     public void setTelefono(String telefono) {

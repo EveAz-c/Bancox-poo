@@ -1,15 +1,20 @@
 package modelo.personas;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 import modelo.cuentas.Cuenta;
 
+
+
 public class Cliente extends Persona {
-    private String direccion;
-    private String curp;
-    private LocalDate fecha_nacimiento;
-    private List<Cuenta> cuentas = new ArrayList<>();
+    protected String direccion;
+    protected String curp;
+    protected LocalDate fechaNacimiento;
+    protected List<Cuenta> cuentas = new ArrayList<>();
+
+    static final int MAYORIA_DE_EDAD = 18;
 
     public Cliente() {
     }
@@ -18,11 +23,19 @@ public class Cliente extends Persona {
         super(nombre, apellido, telefono, correo);
         this.direccion = direccion;
         this.curp = curp;
-        this.fecha_nacimiento = fechaNacimiento;
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public String getNombreCompleto() {
+        return nombre + " " + apellido + " ";
     }
 
     public boolean esMayorDeEdad() {
-        // TODO: implementar
+        if (fechaNacimiento == null) {
+            throw new NullPointerException();
+        }
+        int edad = Period.between(fechaNacimiento, LocalDate.now()).getYears();
+        if (edad >= MAYORIA_DE_EDAD) { return true;}
         return false;
     }
 
@@ -30,15 +43,18 @@ public class Cliente extends Persona {
         this.direccion = direccion;
     }
 
+    public String getCurp(){
+        return curp;
+    }
+
     @Override
     public String obtenerRol() {
-        // TODO: implementar
-        return null;
+        return "Cliente";
     }
 
     @Override
     public String toString() {
-        return "Cliente{" + "direccion=" + direccion + ", curp=" + curp + ", fecha_nacimiento=" + fecha_nacimiento + "}";
+        return "Cliente{" + "direccion=" + direccion + ", curp=" + curp + ", fecha_nacimiento=" + fechaNacimiento + "}";
     }
 
 }

@@ -14,8 +14,7 @@ public class Cajero extends Empleado {
 
     @Override
     public String obtenerRol() {
-        // TODO: implementar
-        return null;
+        return "Cajero";
     }
 
 }

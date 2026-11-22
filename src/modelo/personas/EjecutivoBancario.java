@@ -11,14 +11,15 @@ public class EjecutivoBancario extends Empleado {
     }
 
     public boolean autorizarApertura(Cliente cliente) {
-        // TODO: implementar
+        if (cliente != null && cliente.esMayorDeEdad() && cliente.getCurp() != null){
+            return true;
+        }
         return false;
     }
 
     @Override
     public String obtenerRol() {
-        // TODO: implementar
-        return null;
+        return "Ejecutivo bancario";
     }
 
 }
