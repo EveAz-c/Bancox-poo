@@ -1,0 +1,7 @@
+# IntelliJ
+out/
+.idea/workspace.xml
+.idea/shelf/
+.idea/httpRequests/
+.idea/dataSources/
+*.iws
