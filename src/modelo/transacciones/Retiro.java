@@ -13,9 +13,12 @@ public class Retiro extends Transaccion implements Comisionable {
 
     @Override
     public void ejecutar() {
-        double total = monto-calcularComision();
+        if (estado != EstadoTransaccion.PENDIENTE) return;
+
+        double total = monto+calcularComision();
         if (cuentaOrigen.retirar(total)) {
             estado = EstadoTransaccion.APLICADA;
+            comprobante = new Comprobante(this);
         } else {
             estado = EstadoTransaccion.RECHAZADA;
         }

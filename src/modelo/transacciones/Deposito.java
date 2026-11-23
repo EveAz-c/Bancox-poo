@@ -17,9 +17,12 @@ public class Deposito extends Transaccion implements Comisionable {
 
     @Override
     public void ejecutar() {
+        if (estado != EstadoTransaccion.PENDIENTE) return;
+
         double total = monto-calcularComision();
         if(cuentaOrigen.depositar(total)) {
             estado = EstadoTransaccion.APLICADA;
+            comprobante = new Comprobante(this);
         } else {
             estado = EstadoTransaccion.RECHAZADA;
         }

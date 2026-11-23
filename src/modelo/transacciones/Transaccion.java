@@ -19,8 +19,11 @@ public abstract class Transaccion {
     }
 
     public Transaccion(double monto, Cuenta cuentaOrigen) {
+        this.idTransaccion = "ID-" + (++contador);
         this.monto = monto;
         this.cuentaOrigen = cuentaOrigen;
+        this.estado = EstadoTransaccion.PENDIENTE;
+        this.fechaHora = LocalDateTime.now();
     }
 
     public abstract void ejecutar();
@@ -33,6 +36,26 @@ public abstract class Transaccion {
 
     public double getMonto() {
         return monto;
+    }
+
+    public EstadoTransaccion getEstado() {
+        return estado;
+    }
+
+    public Comprobante getComprobante() {
+        return comprobante;
+    }
+
+    public Cuenta getCuentaOrigen() {
+        return cuentaOrigen;
+    }
+
+    public Cuenta getCuentaDestino() {
+        return cuentaDestino;
+    }
+
+    public LocalDateTime getFechaHora() {
+        return fechaHora;
     }
 
     @Override

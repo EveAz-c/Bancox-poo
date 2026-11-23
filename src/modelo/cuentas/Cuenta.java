@@ -19,10 +19,14 @@ public abstract class Cuenta {
         this.numeroCuenta = numeroCuenta;
         this.titular = titular;
         this.saldo = saldoInicial;
+        this.estado = EstadoCuenta.ACTIVA;
+        this.fechaApertura = LocalDate.now();
+        this.historial = new HistorialMovimientos(numeroCuenta);
+        totalCuentas++;
     }
 
     public boolean depositar(double monto) {
-        if (estado==EstadoCuenta.ACTIVA || monto>0){
+        if (estado==EstadoCuenta.ACTIVA && monto>0){
             saldo+=monto;
             return true;
         }

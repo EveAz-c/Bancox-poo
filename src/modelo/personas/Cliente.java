@@ -26,13 +26,15 @@ public class Cliente extends Persona {
         this.fechaNacimiento = fechaNacimiento;
     }
 
+    @Override
     public String getNombreCompleto() {
         return nombre + " " + apellido + " ";
     }
 
     public boolean esMayorDeEdad() {
         if (fechaNacimiento == null) {
-            throw new NullPointerException();
+            return false; // Lanzar el error podría provocar que la compilación se pare, no debe de ser un NPE (NullPointerException)
+            // throw new NullPointerException();
         }
         int edad = Period.between(fechaNacimiento, LocalDate.now()).getYears();
         if (edad >= MAYORIA_DE_EDAD) { return true;}

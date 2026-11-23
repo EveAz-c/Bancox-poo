@@ -19,8 +19,11 @@ public class Comprobante {
     public String generarTexto() {
         return "COMPROBANTE #" + folio + "\n"
                 + "Fecha: " + fechaEmision + "\n"
-                +  transaccion+ "\n"
-                + "Total: $" + montoTotal;
+                + "Tipo: " + transaccion.getClass().getSimpleName() + "\n"
+                + "Estado: " + transaccion.getEstado() + "\n"
+                + "Fecha/hora: " + transaccion.getFechaHora() + "\n"
+                + "Monto: $" + montoTotal + "\n"
+                + transaccion;
     }
 
     public int getFolio() {

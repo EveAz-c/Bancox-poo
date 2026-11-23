@@ -15,15 +15,23 @@ public class Transferencia extends Transaccion implements Comisionable {
 
     @Override
     public void ejecutar() {
+        if (estado != EstadoTransaccion.PENDIENTE) return;
+
         if (cuentaDestino == null || !cuentaDestino.puedeRecibir(monto)) {
             estado = EstadoTransaccion.RECHAZADA;
-        } else if (cuentaOrigen.retirar(monto + calcularComision())) {
-            cuentaDestino.depositar(monto);
-            estado = EstadoTransaccion.APLICADA;
-        } else {
-            estado = EstadoTransaccion.RECHAZADA;
-        }
+        }  else if (cuentaOrigen.retirar(monto + calcularComision())) {
+           if (cuentaDestino.depositar(monto)) {
+               estado = EstadoTransaccion.APLICADA;
+               comprobante = new Comprobante(this);
+           } else {
+               cuentaOrigen.depositar(monto + calcularComision());  // reversión
+               estado = EstadoTransaccion.RECHAZADA;
+           }
+       } else {
+           estado = EstadoTransaccion.RECHAZADA;
+       }
         fechaHora= LocalDateTime.now();
+
     }
 
     @Override
