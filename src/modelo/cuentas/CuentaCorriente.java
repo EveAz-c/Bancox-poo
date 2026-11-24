@@ -20,6 +20,7 @@ public class CuentaCorriente extends Cuenta {
         return 0;
     }
 
+    // POLIMORFISMO:
     @Override
     protected boolean puedeRetirar(double monto) {
         return monto >= saldo + limiteSobregiro;

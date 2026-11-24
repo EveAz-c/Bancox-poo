@@ -21,10 +21,10 @@ public class CuentaAhorro extends Cuenta {
         return 0;
     }
 
+    // POLIMORFISMO:
     @Override
     protected boolean puedeRetirar(double monto) {
-        // TODO: implementar
-        return false;
+        return monto <= saldo && retirosMensuales <= LIMITE_RETIROS;
     }
 
     @Override
@@ -32,4 +32,10 @@ public class CuentaAhorro extends Cuenta {
         return "CuentaAhorro{" + "tasaInteres=" + tasaInteres + ", retirosMensuales=" + retirosMensuales + "}";
     }
 
+    @Override
+    public boolean retirar(double monto) {
+       if (!super.retirar(monto)) return false;
+       retirosMensuales++;
+       return true;
+    }
 }
