@@ -22,8 +22,7 @@ public class CuentaCorriente extends Cuenta {
 
     @Override
     protected boolean puedeRetirar(double monto) {
-        // TODO: implementar
-        return false;
+        return monto >= saldo + limiteSobregiro;
     }
 
     public double cobrarComisionManejo() {
