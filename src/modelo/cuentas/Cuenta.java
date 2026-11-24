@@ -58,7 +58,6 @@ public abstract class Cuenta {
 
     public abstract double calcularInteres();
 
-
     protected abstract boolean puedeRetirar(double monto);
 
     @Override
