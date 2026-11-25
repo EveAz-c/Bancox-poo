@@ -28,8 +28,10 @@ public class Sucursal {
     }
 
     public boolean removerEmpleado(String numeroEmpleado) {
-        // TODO: implementar
-        return false;
+        if (numeroEmpleado == null) {
+            throw new IllegalArgumentException("El número de empleado no puede ser nulo");
+        }
+        return empleados.removeIf(empleado -> empleado.getNumeroEmpleado().equals(numeroEmpleado));
     }
 
     public List<Empleado> listarEmpleados() {
