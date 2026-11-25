@@ -17,7 +17,14 @@ public class Sucursal {
     }
 
     public void asignarEmpleado(Empleado empleado) {
-        // TODO: implementar
+        if(empleado == null){
+            throw new IllegalArgumentException("El empleado no puede ser nulo");
+        }
+        if(empleados.contains(empleado)){
+            throw new IllegalArgumentException("El empleado ya está asignado a la sucursal");
+        } else{
+            empleados.add(empleado);
+        }
     }
 
     public boolean removerEmpleado(String numeroEmpleado) {
