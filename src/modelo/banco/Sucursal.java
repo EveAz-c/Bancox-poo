@@ -16,15 +16,18 @@ public class Sucursal {
         this.direccion = direccion;
     }
 
+    public String getClave() {
+        return clave;
+    }
+
     public void asignarEmpleado(Empleado empleado) {
-        if(empleado == null){
+        if (empleado == null) {
             throw new IllegalArgumentException("El empleado no puede ser nulo");
         }
-        if(empleados.contains(empleado)){
+        if (empleados.contains(empleado)) {
             throw new IllegalArgumentException("El empleado ya está asignado a la sucursal");
-        } else{
-            empleados.add(empleado);
         }
+        empleados.add(empleado);
     }
 
     public boolean removerEmpleado(String numeroEmpleado) {
@@ -35,8 +38,6 @@ public class Sucursal {
     }
 
     public List<Empleado> listarEmpleados() {
-        // TODO: implementar
-        return new ArrayList<>();
+        return new ArrayList<>(empleados);
     }
-
 }
