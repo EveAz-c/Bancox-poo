@@ -9,10 +9,14 @@ public abstract class Empleado extends Persona {
     public Empleado(String nombre, String apellido, String telefono, String correo, String numeroEmpleado) {
         super(nombre, apellido, telefono, correo);
         this.numeroEmpleado = numeroEmpleado;
+        this.fechaIngreso = LocalDate.now();
     }
 
     public String getNumeroEmpleado() {
         return numeroEmpleado;
     }
 
+    public LocalDate getFechaIngreso() {
+        return fechaIngreso;
+    }
 }

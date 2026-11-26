@@ -6,15 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 import modelo.cuentas.Cuenta;
 
-
-
 public class Cliente extends Persona {
-    protected String direccion;
-    protected String curp;
-    protected LocalDate fechaNacimiento;
-    protected List<Cuenta> cuentas = new ArrayList<>();
+    private static final int MAYORIA_DE_EDAD = 18;
 
-    static final int MAYORIA_DE_EDAD = 18;
+    private String direccion;
+    private String curp;
+    private LocalDate fechaNacimiento;
+    private List<Cuenta> cuentas = new ArrayList<>();
 
     public Cliente() {
     }
@@ -26,26 +24,34 @@ public class Cliente extends Persona {
         this.fechaNacimiento = fechaNacimiento;
     }
 
+    public List<Cuenta> getCuentas() {
+        return new ArrayList<>(cuentas);
+    }
+
+    public void agregarCuenta(Cuenta cuenta) {
+        if (cuenta == null) {
+            throw new IllegalArgumentException("La cuenta no puede ser nula");
+        }
+        cuentas.add(cuenta);
+    }
+
     @Override
     public String getNombreCompleto() {
-        return nombre + " " + apellido + " ";
+        return nombre + " " + apellido;
     }
 
     public boolean esMayorDeEdad() {
         if (fechaNacimiento == null) {
-            return false; // Lanzar el error podría provocar que la compilación se pare, no debe de ser un NPE (NullPointerException)
-            // throw new NullPointerException();
+            return false;
         }
-        int edad = Period.between(fechaNacimiento, LocalDate.now()).getYears();
-        if (edad >= MAYORIA_DE_EDAD) { return true;}
-        return false;
+        return Period.between(fechaNacimiento, LocalDate.now()).getYears() >= MAYORIA_DE_EDAD;
     }
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
 
-    public String getCurp(){
+    public String getCurp() {
         return curp;
     }
 
@@ -58,5 +64,4 @@ public class Cliente extends Persona {
     public String toString() {
         return "Cliente{" + "direccion=" + direccion + ", curp=" + curp + ", fechaNacimiento=" + fechaNacimiento + "}";
     }
-
 }

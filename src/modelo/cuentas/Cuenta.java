@@ -25,6 +25,10 @@ public abstract class Cuenta {
         totalCuentas++;
     }
 
+    public EstadoCuenta getEstado() {
+        return estado;
+    }
+
     public boolean depositar(double monto) {
         if (estado==EstadoCuenta.ACTIVA && monto>0){
             saldo+=monto;

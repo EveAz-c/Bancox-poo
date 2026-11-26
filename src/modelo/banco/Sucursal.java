@@ -11,6 +11,9 @@ public class Sucursal {
     private List<Empleado> empleados = new ArrayList<>();
 
     public Sucursal(String clave, String nombre, String direccion) {
+        if(clave == null || nombre == null || direccion == null) {
+            throw new IllegalArgumentException("Los parámetros no pueden ser nulos");
+        }
         this.clave = clave;
         this.nombre = nombre;
         this.direccion = direccion;
