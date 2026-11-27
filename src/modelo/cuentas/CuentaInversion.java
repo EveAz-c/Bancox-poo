@@ -15,6 +15,7 @@ public class CuentaInversion extends Cuenta {
         super(numeroCuenta, titular, saldoInicial);
         this.plazoDias = plazoDias;
         this.tasaAnual = tasaAnual;
+        this.fechaVencimiento = fechaApertura.plusDays(plazoDias);
     }
 
     @Override
@@ -25,13 +26,11 @@ public class CuentaInversion extends Cuenta {
 
     @Override
     protected boolean puedeRetirar(double monto) {
-        // TODO: implementar
-        return false;
+        return haVencido() && monto <= saldo;
     }
 
     public boolean haVencido() {
-        // TODO: implementar
-        return false;
+        return LocalDate.now().isAfter(fechaVencimiento) || LocalDate.now().isEqual(fechaVencimiento);
     }
 
 }
