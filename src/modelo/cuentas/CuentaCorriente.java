@@ -23,7 +23,7 @@ public class CuentaCorriente extends Cuenta {
     // POLIMORFISMO:
     @Override
     protected boolean puedeRetirar(double monto) {
-        return estado == EstadoCuenta.ACTIVA && monto <= saldo + limiteSobregiro;
+        return monto <= saldo + limiteSobregiro;
     }
 
     public double cobrarComisionManejo() {

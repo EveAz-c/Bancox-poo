@@ -24,7 +24,7 @@ public class CuentaAhorro extends Cuenta {
     // POLIMORFISMO:
     @Override
     protected boolean puedeRetirar(double monto) {
-        return estado == EstadoCuenta.ACTIVA && monto <= saldo && retirosMensuales < LIMITE_RETIROS;
+        return monto <= saldo && retirosMensuales < LIMITE_RETIROS;
     }
 
     @Override
