@@ -38,6 +38,9 @@ public abstract class Cuenta {
     }
 
     public boolean retirar(double monto) {
+        if (estado != EstadoCuenta.ACTIVA || monto <= 0){
+            return false;
+        }
         if(!puedeRetirar(monto)){
             return false;
         }
